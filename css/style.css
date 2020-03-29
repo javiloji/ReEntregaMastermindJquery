@@ -1,0 +1,126 @@
+body{
+    text-align: center;
+}
+
+main{
+    display: grid;
+    grid-template-areas: "juego colores";
+    grid-template-columns: auto min-content;
+    width: 550px;
+    margin: 0 auto;
+    background-color: beige;
+    border: black 1px solid;
+
+}
+
+#juego{
+    border-right: black 1px solid;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#cajaPrincipal{
+    display: flex;
+    border-top: black 1px solid;
+}
+
+#coloresElegidos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#coloresComprobados{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#colores div{
+    margin: 10px;
+}
+
+.colorElegido{
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    background-color: silver;
+    margin: 5px;
+}
+
+.colorComprobado{
+    width:30px;
+    height:30px;
+    border-radius:15px;
+    background-color: silver;
+    margin: 5px;
+
+}
+
+#red {
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    background-color: red;
+}
+#blue {
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    background-color: blue;
+}
+#grey {
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    background-color: grey;
+}
+#pink {
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    background-color: pink;
+}
+#violet {
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    background-color: violet;
+}
+#black {
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    background-color: black;
+}
+#white {
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    background-color: white;
+}
+
+#yellow {
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    background-color: yellow;
+}
+
+#comprobar img{
+    width: 60px;
+    /* background-image: url("../img/check.png"); */
+    border-radius:35px;
+    background-color: silver;
+}
+
+#modal{
+    position: fixed;
+    border: 1px black solid;
+    background-color: white;
+    width: 300px;
+    height: 100px;
+    margin-left: 100px;
+    top: 200px;
+    visibility: hidden;
+}
