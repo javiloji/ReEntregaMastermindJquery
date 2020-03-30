@@ -117,7 +117,7 @@ $(function () {
 
     $check.click(comprobar);
 
-    $("#reiniciar").click(function () { location.reload() });
-    $("#seguir").click(function () { $modal.css("visibility", "hidden") });
+    $("#salir").click(function () { location.reload() });
+    $("#seguirJugando").click(function () { $modal.css("visibility", "hidden") });
 
 })

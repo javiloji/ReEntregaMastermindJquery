@@ -11,10 +11,12 @@ let mastermind = (function () {
             return parseInt(Math.random() * colores.length);
         }
         combinacionObjetivo = [generarAleatorio(), generarAleatorio(), generarAleatorio(), generarAleatorio()];
+        combinacionObjetivoColores = [colores[combinacionObjetivo[0]], colores[combinacionObjetivo[1]], colores[combinacionObjetivo[2]], colores[combinacionObjetivo[3]]];
+
     }
 
     let mostrar = function () {
-        return combinacionObjetivo;
+        return combinacionObjetivoColores;
     }
 
     let compararCoincidencia = function (intento) {
