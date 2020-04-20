@@ -10,53 +10,75 @@
 
 $(function () {
 
-    let copia;
+    let $copia;
 
-    let coloresElegidos = $(".colorElegido");
-
-    // let coloresElegidos = document.getElementsByClassName("colorElegido");
+    let $bolaVacia;
 
     let colores = ["rgb(255, 0, 0)", "rgb(0, 0, 255)", "rgb(128, 128, 128)",
         "rgb(255, 192, 203)", "rgb(238, 130, 238)", "rgb(0, 0, 0)", "rgb(255, 255, 255)", "rgb(255, 255, 0)"];
 
     let escuchadores = ["#red", "#blue", "#grey", "#pink", "#violet", "#black", "#white", "#yellow",];
 
-    // let arrayBorrar = ["#red", "#blue", "#grey", "#pink", "#violet", "#black", "#white", "#yellow",];
-
-
     let $check = $("#comprobar");
     let $modal = $("#modal");
 
     let elegirColor = (colorFondo) => {
 
-        for (let i = 0; i < coloresElegidos.length; i++) {
+        $bolaVacia = $("[background-color='rgb(192, 192, 192)']").first();
 
-            if (window.getComputedStyle(coloresElegidos[i]).backgroundColor === "rgb(192, 192, 192)") {
-                coloresElegidos[i].style.backgroundColor = colorFondo;
-                break;
-            }
+        if ($bolaVacia.length !== 0) {
+            $bolaVacia.css("background-color", colorFondo);
+            $bolaVacia.attr('background-color', colorFondo);
         }
+
     }
 
-    let borrarColor = (color) => {
-        color.style.backgroundColor = "rgb(192, 192, 192)";
+    let borrarColor = (bola) => {
+
+        bola.css("background-color", "rgb(192, 192, 192)");
+        bola.attr('background-color', "rgb(192, 192, 192)");
+
     }
 
-    let arrayNegrosYBlancos;
     let comprobar = () => {
-        if (window.getComputedStyle(coloresElegidos[0]).backgroundColor != "rgb(192, 192, 192)"
-            && window.getComputedStyle(coloresElegidos[1]).backgroundColor != "rgb(192, 192, 192)"
-            && window.getComputedStyle(coloresElegidos[2]).backgroundColor != "rgb(192, 192, 192)"
-            && window.getComputedStyle(coloresElegidos[3]).backgroundColor != "rgb(192, 192, 192)"
-        ) {
 
-            arrayNegrosYBlancos = mastermind.compararCoincidencia([
-                colores.indexOf(window.getComputedStyle(coloresElegidos[0]).backgroundColor),
-                colores.indexOf(window.getComputedStyle(coloresElegidos[1]).backgroundColor),
-                colores.indexOf(window.getComputedStyle(coloresElegidos[2]).backgroundColor),
-                colores.indexOf(window.getComputedStyle(coloresElegidos[3]).backgroundColor)
-            ]
-            );
+        let $combinacionGanadora = [];
+
+        let arrayNegrosYBlancos = [];
+
+        let $ultimaLinea = $("#ultimaLinea");
+        let $coloresUltimaLinea = $("#ultimaLinea .colorElegido");
+
+        let $comprobadosUltimaLinea = $("#ultimaLinea .colorComprobado");
+
+        $bolaVacia = $("[background-color='rgb(192, 192, 192)']").first();
+
+
+        if ($bolaVacia.length === 0) {
+
+
+            $coloresUltimaLinea.each(function () {
+                $combinacionGanadora.push(colores.indexOf($(this).css("background-color")));
+            })
+
+            arrayNegrosYBlancos = mastermind.compararCoincidencia($combinacionGanadora);
+            // alert( arrayNegrosYBlancos.toArray() );
+
+            // No funciona esto porque estoy usando Jquery Con un objeto JavaScript
+            // arrayNegrosYBlancos.each(function () {
+            //     if ($(this) == 1) {
+            //         // $((".colorComprobado")[1]).css("background","rgb(0,0,0)");
+            //         $(this).css("background-color","rgb(0,0,0)");
+
+            //         // $(".colorComprobado")[i].style.backgroundColor = "rgb(0,0,0)";
+            //     }
+            //     else if ($(this) == 0) {
+            //         $(this).css("background-color","rgb(255,255,255)");
+            //     }
+            //     else {
+            //         $(this).css("background-color","rgb(192, 192, 192)");
+            //     }
+            // })
 
             for (let i = 0; i < arrayNegrosYBlancos.length; i++) {
 
@@ -69,35 +91,46 @@ $(function () {
                 else {
                     $(".colorComprobado")[i].style.backgroundColor = "rgb(192, 192, 192)";
                 }
-
             }
+
             if (JSON.stringify(arrayNegrosYBlancos) == JSON.stringify([1, 1, 1, 1])) {
                 $modal.css("visibility", "visible");
             }
 
-            document.getElementById("juego").insertBefore(copia, document.getElementById("cajaPrincipal"));
-            copia = document.getElementById("cajaPrincipal").cloneNode(true);
+            // Primero inicializo copia, que tendra el clon del div de ultima linea
+            // Después, al clonarlo, elimino el id ultimaLinea del primero, para que no se repita
+            // Por ultimo limpio la ultima linea para que todos salgan en gris
 
-            for (let i = 0; i < 4; i++) {
+            $copia = $ultimaLinea.clone();
 
-                document.getElementById("cajaPrincipal").getElementsByTagName("div")[0].getElementsByClassName("colorElegido")[i].addEventListener("click", function () {
-                    borrarColor(document.getElementsByClassName("coloresElegidos")[0].childNodes[i * 2 + 1]); // El metodo childNodes devuelve el div en este orden: 1,3,5,7
-                })
-            }
+            $ultimaLinea.before($copia);
+
+            $("#juego #ultimaLinea").first().removeAttr("id");
+
+            $coloresUltimaLinea.each(function () {
+                $(this).attr('background-color', "rgb(192, 192, 192)");
+                $(this).css('background-color', "rgb(192, 192, 192)");
+            })
+
+            $("#ultimaLinea .colorComprobado").each(function () {
+                // $(this).attr('background-color', "rgb(192, 192, 192)");
+                $(this).css('background-color', "rgb(192, 192, 192)");
+            })
+
         }
+
+        return;
+
     }
+
     console.log("Dejo el mastermind.init en consola para que puedas hacer mejor las pruebas: ");
     mastermind.init();
-
-    copia = document.getElementById("cajaPrincipal").cloneNode(true);
 
     console.log(mastermind.mostrar());
 
     /**
      * Este for es el encargado de elegir los colores pulsados y añadirles el escuchador
     */
-
-
 
     for (let i = 0; i < colores.length; i++) {
 
@@ -110,16 +143,18 @@ $(function () {
         })
     }
 
-    for (let i = 0; i < 4; i++) {
+    //Borra el color clicado
 
-        document.getElementById("cajaPrincipal").getElementsByTagName("div")[0].getElementsByClassName("colorElegido")[i].addEventListener("click", function () {
-            borrarColor(document.getElementsByClassName("coloresElegidos")[0].childNodes[i * 2 + 1]); // El metodo childNodes devuelve el div en este orden: 1,3,5,7
-        })
-    }
+    $("#ultimaLinea .colorElegido").click(function () {
+        borrarColor($(this));
+    });
 
     $check.click(comprobar);
 
-    $("#salir").click(function () { location.reload() });
-    $("#seguirJugando").click(function () { $modal.css("visibility", "hidden") });
+    $("#salir").click(function () { window.close() });
+    $("#seguirJugando").click(function () {
+        $modal.css("visibility", "hidden");
+        location.reload();
+    });
 
 })

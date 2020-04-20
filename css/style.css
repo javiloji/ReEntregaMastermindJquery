@@ -19,18 +19,18 @@ main{
     flex-direction: column-reverse;
 }
 
-#cajaPrincipal{
+.cajaPrincipal{
     display: flex;
     border-top: black 1px solid;
 }
 
-#coloresElegidos{
+.coloresElegidos{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#coloresComprobados{
+.coloresComprobados{
     display: flex;
     justify-content: center;
     align-items: center;
