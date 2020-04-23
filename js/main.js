@@ -62,34 +62,17 @@ $(function () {
             })
 
             arrayNegrosYBlancos = mastermind.compararCoincidencia($combinacionGanadora);
-            // alert( arrayNegrosYBlancos.toArray() );
-
-            // No funciona esto porque estoy usando Jquery Con un objeto JavaScript
-            // arrayNegrosYBlancos.each(function () {
-            //     if ($(this) == 1) {
-            //         // $((".colorComprobado")[1]).css("background","rgb(0,0,0)");
-            //         $(this).css("background-color","rgb(0,0,0)");
-
-            //         // $(".colorComprobado")[i].style.backgroundColor = "rgb(0,0,0)";
-            //     }
-            //     else if ($(this) == 0) {
-            //         $(this).css("background-color","rgb(255,255,255)");
-            //     }
-            //     else {
-            //         $(this).css("background-color","rgb(192, 192, 192)");
-            //     }
-            // })
 
             for (let i = 0; i < arrayNegrosYBlancos.length; i++) {
 
                 if (arrayNegrosYBlancos[i] == 1) {
-                    $(".colorComprobado")[i].style.backgroundColor = "rgb(0,0,0)";
+                    $("#ultimaLinea .colorComprobado")[i].style.backgroundColor = "rgb(0,0,0)";
                 }
                 else if (arrayNegrosYBlancos[i] == 0) {
-                    $(".colorComprobado")[i].style.backgroundColor = "rgb(255,255,255)";
+                    $("#ultimaLinea .colorComprobado")[i].style.backgroundColor = "rgb(255,255,255)";
                 }
                 else {
-                    $(".colorComprobado")[i].style.backgroundColor = "rgb(192, 192, 192)";
+                    $("#ultimaLinea .colorComprobado")[i].style.backgroundColor = "rgb(192, 192, 192)";
                 }
             }
 
@@ -107,16 +90,10 @@ $(function () {
 
             $("#juego #ultimaLinea").first().removeAttr("id");
 
-            $coloresUltimaLinea.each(function () {
-                $(this).attr('background-color', "rgb(192, 192, 192)");
-                $(this).css('background-color', "rgb(192, 192, 192)");
-            })
-
-            $("#ultimaLinea .colorComprobado").each(function () {
-                // $(this).attr('background-color', "rgb(192, 192, 192)");
-                $(this).css('background-color', "rgb(192, 192, 192)");
-            })
-
+            $coloresUltimaLinea.attr('background-color', "rgb(192, 192, 192)").css('background-color', "rgb(192, 192, 192)");
+            
+            $("#ultimaLinea .colorComprobado").css('background-color', "rgb(192, 192, 192)");
+            
         }
 
         return;
