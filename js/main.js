@@ -78,6 +78,12 @@ $(function () {
 
             if (JSON.stringify(arrayNegrosYBlancos) == JSON.stringify([1, 1, 1, 1])) {
                 $modal.css("visibility", "visible");
+                $("#ultimaLinea .colorElegido").off("click");
+                $check.off("click");
+
+                for (i of escuchadores) {
+                    $(i).off("click");
+                }
             }
 
             // Primero inicializo copia, que tendra el clon del div de ultima linea
