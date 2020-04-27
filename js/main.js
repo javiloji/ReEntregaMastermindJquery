@@ -27,8 +27,12 @@ $(function () {
         $bolaVacia = $("[background-color='rgb(192, 192, 192)']").first();
 
         if ($bolaVacia.length !== 0) {
-            $bolaVacia.css("background-color", colorFondo);
-            $bolaVacia.attr('background-color', colorFondo);
+            $bolaVacia.fadeOut(100,function(){
+                $bolaVacia.fadeIn(100, function () {
+                    $bolaVacia.css("background-color", colorFondo);
+                    $bolaVacia.attr('background-color', colorFondo);
+                })
+            })
         }
 
     }
@@ -121,29 +125,23 @@ $(function () {
         })
     })
 
-    // for (let i = 0; i < colores.length; i++) {
-
-        // $(escuchadores[i]).click(function () {
-        //     $(escuchadores[i]).fadeOut(100, function () {
-        //         $(this).fadeIn(100, function () {
-        //             elegirColor(colores[i]);
-        //         })
-        //     })
-        // })
-    // }
-
     //Borra el color clicado
 
     $("#ultimaLinea .colorElegido").click(function () {
         $(this).fadeOut(100,function(){
             $(this).fadeIn(100, function () {
                 borrarColor($(this));
-
             })
         })
     });
 
-    $check.click(comprobar);
+    $check.click(function () {
+        $(this).fadeOut(100,function(){
+            $(this).fadeIn(100, function () {
+                comprobar();
+            })
+        })
+    });
 
     $("#salir").click(function () { window.close() });
     $("#seguirJugando").click(function () {
