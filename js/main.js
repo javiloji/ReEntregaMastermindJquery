@@ -42,7 +42,7 @@ $(function () {
 
     let comprobar = () => {
 
-        let $combinacionGanadora = [];
+        let combinacionGanadora = [];
 
         let arrayNegrosYBlancos = [];
 
@@ -58,10 +58,10 @@ $(function () {
 
 
             $coloresUltimaLinea.each(function () {
-                $combinacionGanadora.push(colores.indexOf($(this).css("background-color")));
+                combinacionGanadora.push(colores.indexOf($(this).css("background-color")));
             })
 
-            arrayNegrosYBlancos = mastermind.compararCoincidencia($combinacionGanadora);
+            arrayNegrosYBlancos = mastermind.compararCoincidencia(combinacionGanadora);
 
             for (let i = 0; i < arrayNegrosYBlancos.length; i++) {
 
@@ -77,7 +77,7 @@ $(function () {
             }
 
             if (JSON.stringify(arrayNegrosYBlancos) == JSON.stringify([1, 1, 1, 1])) {
-                
+
                 $modal.css("visibility", "visible");
                 $("#ultimaLinea .colorElegido").off("click");
                 $check.off("click");
