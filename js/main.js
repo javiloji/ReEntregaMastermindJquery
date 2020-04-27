@@ -67,19 +67,18 @@ $(function () {
 
             arrayNegrosYBlancos = mastermind.compararCoincidencia(combinacionGanadora);
 
-            for (let i = 0; i < arrayNegrosYBlancos.length; i++) {
-
+            $("#ultimaLinea .colorComprobado").each(function (i){
                 if (arrayNegrosYBlancos[i] == 1) {
-                    $("#ultimaLinea .colorComprobado")[i].style.backgroundColor = "rgb(0,0,0)";
+                    $(this).css("background-color", "rgb(0,0,0)");
                 }
                 else if (arrayNegrosYBlancos[i] == 0) {
-                    $("#ultimaLinea .colorComprobado")[i].style.backgroundColor = "rgb(255,255,255)";
+                    $(this).css("background-color", "rgb(255,255,255)");
                 }
                 else {
-                    $("#ultimaLinea .colorComprobado")[i].style.backgroundColor = "rgb(192, 192, 192)";
+                    $(this).css("background-color", "rgb(192, 192, 192)");
                 }
-            }
-
+            })
+            
             if (JSON.stringify(arrayNegrosYBlancos) == JSON.stringify([1, 1, 1, 1])) {
 
                 $modal.css("visibility", "visible");
