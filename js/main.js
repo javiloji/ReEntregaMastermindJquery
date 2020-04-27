@@ -77,6 +77,7 @@ $(function () {
             }
 
             if (JSON.stringify(arrayNegrosYBlancos) == JSON.stringify([1, 1, 1, 1])) {
+                
                 $modal.css("visibility", "visible");
                 $("#ultimaLinea .colorElegido").off("click");
                 $check.off("click");
