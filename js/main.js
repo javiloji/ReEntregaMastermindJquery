@@ -102,9 +102,6 @@ $(function () {
             $("#ultimaLinea .colorComprobado").css('background-color', "rgb(192, 192, 192)");
             
         }
-
-        return;
-
     }
 
     console.log("Dejo el mastermind.init en consola para que puedas hacer mejor las pruebas: ");
