@@ -82,9 +82,7 @@ $(function () {
                 $("#ultimaLinea .colorElegido").off("click");
                 $check.off("click");
 
-                for (i of escuchadores) {
-                    $(i).off("click");
-                }
+                $("#colores div").off("click");
             }
 
             // Primero inicializo copia, que tendra el clon del div de ultima linea
@@ -110,11 +108,10 @@ $(function () {
     console.log(mastermind.mostrar());
 
     /**
-     * Este for es el encargado de elegir los colores pulsados y añadirles el escuchador
+     * Este each es el encargado de elegir los colores pulsados y añadirles el escuchador
     */
 
-    for (let i = 0; i < colores.length; i++) {
-
+    $.each(colores, function (i) {
         $(escuchadores[i]).click(function () {
             $(escuchadores[i]).fadeOut(100, function () {
                 $(this).fadeIn(100, function () {
@@ -122,12 +119,28 @@ $(function () {
                 })
             })
         })
-    }
+    })
+
+    // for (let i = 0; i < colores.length; i++) {
+
+        // $(escuchadores[i]).click(function () {
+        //     $(escuchadores[i]).fadeOut(100, function () {
+        //         $(this).fadeIn(100, function () {
+        //             elegirColor(colores[i]);
+        //         })
+        //     })
+        // })
+    // }
 
     //Borra el color clicado
 
     $("#ultimaLinea .colorElegido").click(function () {
-        borrarColor($(this));
+        $(this).fadeOut(100,function(){
+            $(this).fadeIn(100, function () {
+                borrarColor($(this));
+
+            })
+        })
     });
 
     $check.click(comprobar);
